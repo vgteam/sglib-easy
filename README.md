@@ -3,7 +3,7 @@ Easy installation for sglib
 
 ### Instructions
 
-This repository coordinates the installation of [`sglib`](https://github.com/vgteam/sglib) along with its dependencies. The following commands will build these repositories locally:
+This repository coordinates the installation of [`sglib`](https://github.com/vgteam/sglib) along with its dependencies. Further documentation about `sglib` can be found in its repository. The following commands will build these repositories locally:
 
 ```
 git clone --recursive https://github.com/vgteam/sglib-easy.git
