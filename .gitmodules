@@ -10,3 +10,6 @@
 [submodule "deps/sglib"]
 	path = deps/sglib
 	url = https://github.com/vgteam/sglib
+[submodule "deps/DYNAMIC"]
+	path = deps/DYNAMIC
+	url = https://github.com/vgteam/DYNAMIC.git
