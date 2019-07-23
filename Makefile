@@ -19,7 +19,10 @@ $(LIB_DIR)/libsdsl.a:
 $(INC_DIR)/sparsepp/spp.h:
 	cp -r $(DEP_DIR)/sparsepp/sparsepp/ $(INC_DIR)/sparsepp
 
-$(LIB_DIR)/libbdsg.a: $(LIB_DIR)/libhandlegraph.a $(LIB_DIR)/libsdsl.a $(INC_DIR)/sparsepp/spp.h 
+$(INC_DIR)/dynamic.h
+	cp -r $(DEP_DIR)/DYNAMIC/include/* $(INC_DIR)
+
+$(LIB_DIR)/libbdsg.a: $(LIB_DIR)/libhandlegraph.a $(LIB_DIR)/libsdsl.a $(INC_DIR)/sparsepp/spp.h $(INC_DIR)/dynamic.h
 	cd $(DEP_DIR)/libbdsg && CPLUS_INCLUDE_PATH=$(CWD)/$(INC_DIR) make && cp lib/libbdsg.a $(CWD)/$(LIB_DIR) && cp -r include/* $(CWD)/$(INC_DIR) && cd $(CWD)
 
 # run .pre-build before we make anything at all.
