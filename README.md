@@ -1,13 +1,14 @@
-# sglib-easy
-Easy installation for sglib
+# libbdsg-easy
+
+Easy installation for libbdsg
 
 ### Instructions
 
-This repository coordinates the installation of [`sglib`](https://github.com/vgteam/sglib) along with its dependencies. Further documentation about `sglib` can be found in its repository. The following commands will build these repositories locally:
+This repository coordinates the installation of [`libbdsg`](https://github.com/vgteam/libbdsg) along with its dependencies. Further documentation about `libbdsg` can be found in its repository. The following commands will build these repositories locally:
 
 ```
-git clone --recursive https://github.com/vgteam/sglib-easy.git
-cd sglib-easy
+git clone --recursive https://github.com/vgteam/libbdsg-easy.git
+cd libbdsg-easy
 make -j8
 ```
 
