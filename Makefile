@@ -12,6 +12,7 @@ all: $(LIB_DIR)/libbdsg.a;
 
 $(LIB_DIR)/libhandlegraph.a:
 	cd $(DEP_DIR)/libhandlegraph && mkdir -p build && cd build && cmake -DCMAKE_INSTALL_PREFIX=$(CWD) .. && make install && cd $(CWD)
+	rm lib/libhandlegraph.dylib
 
 $(LIB_DIR)/libsdsl.a:
 	cd $(DEP_DIR)/sdsl-lite && ./install.sh $(CWD) && cd $(CWD)
@@ -25,7 +26,7 @@ $(INC_DIR)/dynamic.h:
 	cd $(DEP_DIR)/DYNAMIC && mkdir -p build && cd build && cmake .. && make && cp -r hopscotch_map-prefix/src/hopscotch_map/include/* $(CWD)/$(INC_DIR) && cd $(CWD)
 
 $(LIB_DIR)/libbdsg.a: $(LIB_DIR)/libhandlegraph.a $(LIB_DIR)/libsdsl.a $(INC_DIR)/sparsepp/spp.h $(INC_DIR)/dynamic.h
-	cd $(DEP_DIR)/libbdsg && CPLUS_INCLUDE_PATH=$(CWD)/$(INC_DIR) make && cp lib/libbdsg.a $(CWD)/$(LIB_DIR) && cp -r include/* $(CWD)/$(INC_DIR) && cd $(CWD)
+	cd $(DEP_DIR)/libbdsg && CPLUS_INCLUDE_PATH=$(CWD)/$(INC_DIR):$(CPLUS_INCLUDE_PATH) LIBRARY_PATH=$(CWD)/$(LIB_DIR):$(LIBRARY_PATH) make test && cp lib/libbdsg.a $(CWD)/$(LIB_DIR) && cp -r include/* $(CWD)/$(INC_DIR) && cd $(CWD)
 
 # run .pre-build before we make anything at all.
 -include .pre-build
