@@ -16,3 +16,6 @@
 [submodule "deps/DYNAMIC"]
 	path = deps/DYNAMIC
 	url = https://github.com/vgteam/DYNAMIC.git
+[submodule "deps/BBHash"]
+	path = deps/BBHash
+	url = https://github.com/rizkg/BBHash.git
