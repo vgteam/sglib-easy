@@ -12,6 +12,8 @@ all: $(LIB_DIR)/libbdsg.a;
 
 $(LIB_DIR)/libhandlegraph.a:
 	cd $(DEP_DIR)/libhandlegraph && mkdir -p build && cd build && cmake -DCMAKE_INSTALL_PREFIX=$(CWD) .. && $(MAKE) install && cd $(CWD)
+	if [ -f $(LIB_DIR)/libhandlegraph.dylib ]; then rm (LIB_DIR)/libhandlegraph.dylib; fi
+	if [ -f $(LIB_DIR)/libhandlegraph.so ]; then rm (LIB_DIR)/libhandlegraph.so; fi
 
 $(LIB_DIR)/libsdsl.a:
 	cd $(DEP_DIR)/sdsl-lite && ./install.sh $(CWD) && cd $(CWD)
