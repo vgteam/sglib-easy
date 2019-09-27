@@ -30,7 +30,7 @@ $(INC_DIR)/BooPHF.h:
 	cp $(DEP_DIR)/BBHash/BooPHF.h $(INC_DIR)
 
 $(LIB_DIR)/libbdsg.a: $(LIB_DIR)/libhandlegraph.a $(LIB_DIR)/libsdsl.a $(INC_DIR)/sparsepp/spp.h $(INC_DIR)/dynamic.h $(INC_DIR)/BooPHF.h
-	cd $(DEP_DIR)/libbdsg && CPLUS_INCLUDE_PATH=$(CWD)/$(INC_DIR):$(CPLUS_INCLUDE_PATH) LIBRARY_PATH=$(CWD)/$(LIB_DIR):$(LIBRARY_PATH) $(MAKE) test && cp lib/libbdsg.a $(CWD)/$(LIB_DIR) && cp -r include/* $(CWD)/$(INC_DIR) && cd $(CWD)
+	cd $(DEP_DIR)/libbdsg && CPLUS_INCLUDE_PATH=$(CWD)/$(INC_DIR):$(CPLUS_INCLUDE_PATH) LIBRARY_PATH=$(CWD)/$(LIB_DIR):$(LIBRARY_PATH) $(MAKE) && cp lib/libbdsg.a $(CWD)/$(LIB_DIR) && cp -r include/* $(CWD)/$(INC_DIR) && cd $(CWD)
 
 # run .pre-build before we make anything at all.
 -include .pre-build
