@@ -11,7 +11,7 @@ INSTALL_INC_DIR=$(INSTALL_PREFIX)/include
 all: $(LIB_DIR)/libbdsg.a;
 
 $(LIB_DIR)/libhandlegraph.a:
-	cd $(DEP_DIR)/libhandlegraph && mkdir -p build && cd build && cmake -DCMAKE_INSTALL_PREFIX=$(CWD) .. && $(MAKE) install && cd $(CWD)
+	cd $(DEP_DIR)/libhandlegraph && mkdir -p build && cd build && CXXFLAGS="$(CXXFLAGS) $(CPPFLAGS)" cmake -DCMAKE_VERBOSE_MAKEFILE=ON .. && $(MAKE) handlegraph_static && cp libhandlegraph.a $(CWD)/$(LIB_DIR) && cp -r ../src/include/handlegraph $(CWD)/$(INC_DIR)
 	if [ -f $(LIB_DIR)/libhandlegraph.dylib ]; then rm $(LIB_DIR)/libhandlegraph.dylib; fi
 	if [ -f $(LIB_DIR)/libhandlegraph.so ]; then rm $(LIB_DIR)/libhandlegraph.so; fi
 
@@ -40,7 +40,7 @@ clean:
 	if [ -d $(DEP_DIR)/libhandlegraph/build ]; then cd $(DEP_DIR)/libhandlegraph/build && make clean && cd .. & rm -rf build & cd $(CWD); fi
 	if [ -d $(DEP_DIR)/libhandlegraph/build ]; then cd $(DEP_DIR)/sdsl-lite/build && make clean && cd .. & rm -rf build & cd $(CWD); fi
 	cd $(DEP_DIR)/libbdsg/ && make clean && cd $(CWD)
-	
+
 
 install: all
 	mkdir -p $(INSTALL_LIB_DIR)
