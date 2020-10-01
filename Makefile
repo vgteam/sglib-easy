@@ -21,16 +21,17 @@ $(LIB_DIR)/libsdsl.a:
 $(INC_DIR)/sparsepp/spp.h:
 	cp -r $(DEP_DIR)/sparsepp/sparsepp/ $(INC_DIR)/sparsepp
 
-$(INC_DIR)/dynamic.h:
-	cp -r $(DEP_DIR)/DYNAMIC/include/* $(INC_DIR)
+$(INC_DIR)/dynamic/dynamic.h:
+	mkdir -p $(INC_DIR)/dynamic/
+	cp -r $(DEP_DIR)/DYNAMIC/include/* $(INC_DIR)/dynamic/
 	# annoyingly doesn't have an install option on the cmake, so we manually move their external dependency headers
 	cd $(DEP_DIR)/DYNAMIC && mkdir -p build && cd build && cmake .. && $(MAKE) && cp -r hopscotch_map-prefix/src/hopscotch_map/include/* $(CWD)/$(INC_DIR) && cd $(CWD)
 
 $(INC_DIR)/BooPHF.h:
 	cp $(DEP_DIR)/BBHash/BooPHF.h $(INC_DIR)
 
-$(LIB_DIR)/libbdsg.a: $(LIB_DIR)/libhandlegraph.a $(LIB_DIR)/libsdsl.a $(INC_DIR)/sparsepp/spp.h $(INC_DIR)/dynamic.h $(INC_DIR)/BooPHF.h
-	cd $(DEP_DIR)/libbdsg && CPLUS_INCLUDE_PATH=$(CWD)/$(INC_DIR):$(CPLUS_INCLUDE_PATH) LIBRARY_PATH=$(CWD)/$(LIB_DIR):$(LIBRARY_PATH) $(MAKE) && cp lib/libbdsg.a $(CWD)/$(LIB_DIR) && cp -r include/* $(CWD)/$(INC_DIR) && cd $(CWD)
+$(LIB_DIR)/libbdsg.a: $(LIB_DIR)/libhandlegraph.a $(LIB_DIR)/libsdsl.a $(INC_DIR)/sparsepp/spp.h $(INC_DIR)/dynamic/dynamic.h $(INC_DIR)/BooPHF.h
+	cd $(DEP_DIR)/libbdsg && CPLUS_INCLUDE_PATH=$(CWD)/$(INC_DIR):$(CPLUS_INCLUDE_PATH) LIBRARY_PATH=$(CWD)/$(LIB_DIR):$(LIBRARY_PATH) $(MAKE) && cp lib/libbdsg.a $(CWD)/$(LIB_DIR) && cp -r bdsg/include/* $(CWD)/$(INC_DIR) && cd $(CWD)
 
 # run .pre-build before we make anything at all.
 -include .pre-build
