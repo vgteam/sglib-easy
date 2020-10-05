@@ -23,7 +23,7 @@ $(INC_DIR)/sparsepp/spp.h:
 
 $(INC_DIR)/dynamic/dynamic.h:
 	mkdir -p $(INC_DIR)/dynamic/
-	cp -r $(DEP_DIR)/DYNAMIC/include/* $(INC_DIR)/dynamic/
+	cp -r $(DEP_DIR)/DYNAMIC/include/* $(INC_DIR)/
 	# annoyingly doesn't have an install option on the cmake, so we manually move their external dependency headers
 	cd $(DEP_DIR)/DYNAMIC && mkdir -p build && cd build && cmake .. && $(MAKE) && cp -r hopscotch_map-prefix/src/hopscotch_map/include/* $(CWD)/$(INC_DIR) && cd $(CWD)
 
